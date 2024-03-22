@@ -35,7 +35,7 @@ class DiceTenPainter extends DicePainter {
   void paint(Canvas canvas, Size size) {
     // shapes
     final strokeWidth = size.width / 16.0;
-    final shape = DiceShapes().getDecahidron(size);
+    final shape = DiceShapes().getOctahidron(size);
     final text = TextSpan(
         text: n.toString(),
         style: TextStyle(
