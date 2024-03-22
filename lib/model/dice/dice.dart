@@ -1,0 +1,1 @@
+enum DiceSides { four, six, eight, ten, twenty, hundred }

@@ -1,0 +1,62 @@
+import 'package:deskweb/widgets/dice/paint/dice_n.dart';
+import 'package:deskweb/widgets/dice/paint/dice_painter.dart';
+import 'package:deskweb/widgets/dice/paint/dice_shapes.dart';
+import 'package:flutter/material.dart';
+
+class DiceFourWidget extends DiceNWidget {
+  final int n;
+
+  const DiceFourWidget(
+      {super.key,
+      required this.n,
+      required super.size,
+      required super.backgroundColor,
+      required super.foregroundColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CustomPaint(
+        size: Size(size, size),
+        painter: DiceFourPainter(
+            n: n, bgColor: backgroundColor, fgColor: foregroundColor),
+      ),
+    );
+  }
+}
+
+class DiceFourPainter extends DicePainter {
+  final int n;
+  const DiceFourPainter(
+      {required this.n, required Color bgColor, required Color fgColor})
+      : super(backgroundColor: bgColor, foregroundColor: fgColor);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // shapes
+    final strokeWidth = size.width / 16.0;
+    final triangle = DiceShapes().getTriangle(size, strokeWidth);
+    final text = TextSpan(
+        text: n.toString(),
+        style: TextStyle(
+            color: foregroundColor,
+            fontSize: size.width / 3.0,
+            fontWeight: FontWeight.bold));
+    final textPainter = TextPainter(
+        text: text,
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.center);
+    textPainter.layout();
+
+    // draw
+    canvas.drawPath(triangle, getBgPaint());
+    canvas.drawPath(triangle, getRectPaint(strokeWidth));
+    textPainter.paint(
+        canvas,
+        Offset((size.width - textPainter.width) / 2,
+            ((size.height - textPainter.height) / 2) + strokeWidth * 2));
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}

@@ -1,0 +1,17 @@
+{
+    "app_title": "DeskWeb",
+    "welcome_message": "Welcome to DeskWeb!",
+    "button_text": "Click Me",
+    "error_message": "An error occurred. Please try again later.",
+    "success_message": "Operation completed successfully.",
+    "menu": {
+        "home": "Home",
+        "about": "About",
+        "settings": "Settings",
+        "logout": "Logout"
+    },
+    "placeholders": {
+        "username": "Enter your username",
+        "password": "Enter your password"
+    }
+}
